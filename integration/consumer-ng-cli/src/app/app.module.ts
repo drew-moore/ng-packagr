@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { FooComponent, BarComponent } from '@foo/bar';
+import { FooComponent, BarComponent } from 'sample-custom';
+import { UiLibModule } from '@sample/material';
 
 import { AppComponent } from './app.component';
 

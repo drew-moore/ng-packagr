@@ -5,11 +5,13 @@ Integration Testing for `ng-packagr`
 
 #### Steps to reproduce
 
-Prepare `sample` library:
+Prepare sample libraries:
 
 ```bash
 $ yarn sample
-$ cd integration/sample/dist
+$ cd integration/sample_custom/dist
+$ yarn link
+$ cd integration/sample_material/dist
 $ yarn link
 ```
 
@@ -17,7 +19,8 @@ Build an `ng` CLI consumer app:
 
 ```bash
 $ cd integration/consumer-ng-cli
-$ yarn link @foo/bar
+$ yarn link sample-custom
+$ yarn link @sample/material
 $ yarn install
 $ yarn build:dev
 $ yarn build:prod:jit

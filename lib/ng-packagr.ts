@@ -60,7 +60,8 @@ export const ngPackage = (opts: NgPackagrCliArguments): Promise<any> => {
       moduleName: ngPkg.meta.name,
       entry: es2015EntryFile,
       format: 'es',
-      dest: `${ngPkg.workingDirectory}/${ngPkg.artefacts.es2015}`
+      dest: `${ngPkg.workingDirectory}/${ngPkg.artefacts.es2015}`,
+      externals: ngPkg.externals
     }))
       // XX .then(() => remapSourcemap(`${project.workingDirectory}/${sourcePkg.dest.es2015}`))
     // 5. FESM5: TSC
@@ -73,7 +74,8 @@ export const ngPackage = (opts: NgPackagrCliArguments): Promise<any> => {
       moduleName: ngPkg.meta.name,
       entry: `${ngPkg.workingDirectory}/${ngPkg.artefacts.module}`,
       format: 'umd',
-      dest: `${ngPkg.workingDirectory}/${ngPkg.artefacts.main}`
+      dest: `${ngPkg.workingDirectory}/${ngPkg.artefacts.main}`,
+      externals: ngPkg.externals
     }))
       // XX .then(() => remapSourcemap(`${project.workingDirectory}/${sourcePkg.dest.main}`))
     // 7. COPY FILES

@@ -6,13 +6,12 @@ const SCOPE_NAME_SEPARATOR = '/';
 
 
 export class NgPackage {
-
   constructor(
     private basePath: string,
     /** Contents of `ng-package.json` file. */
     public ngPackageJson: NgPackageConfig,
     /** Contents of `package.json` file. */
-    public packageJson: any
+    public packageJson: any,
   ) {
     if (!ngPackageJson.src) this.ngPackageJson.src = '.';
     if (!ngPackageJson.dest) this.ngPackageJson.dest = 'dist';
@@ -20,6 +19,7 @@ export class NgPackage {
     if (ngPackageJson.lib) {
       if (!ngPackageJson.lib.entryFile) this.ngPackageJson.lib.entryFile = 'src/public_api.ts';
       //if (!ngPackageJson.lib.flatModuleFile) this.ngPackageJson.lib.flatModuleFile = 'index';
+      if (!this.ngPackageJson.lib.externals) this.ngPackageJson.lib.externals = {};
     }
   }
 
@@ -29,6 +29,10 @@ export class NgPackage {
 
   public get src(): string {
     return path.resolve(this.basePath, this.ngPackageJson.src);
+  }
+
+  public get externals(): {[id:string]:string}{
+    return this.ngPackageJson.lib.externals;
   }
 
   public get workingDirectory(): string {
